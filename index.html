@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> </title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#09070b;
+  --surface:#171019;
+  --gold:#d9b77e;
+  --pink:#e69ab6;
+  --white:#fff4f7;
+  --muted:#a99ba4;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html {scroll-behavior:smooth;}
+
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Cairo',sans-serif;
+  overflow-x:hidden;
+  padding-bottom:85px;
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 15% 15%,#792b4a30,transparent 35%),
+    radial-gradient(circle at 85% 75%,#8d603020,transparent 35%);
+}
+
+#particles {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.particle {
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:var(--gold);
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {transform:translateY(110vh);opacity:0;}
+  20% {opacity:.7;}
+  to {transform:translateY(-10vh);opacity:0;}
+}
+
+/* شاشة الدخول */
+
+#intro {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse at center,#351522 0%,#160c16 48%,#080609 100%);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  transition:1s;
+}
+
+.intro-content {
+  padding:25px;
+  animation:entry 1.5s ease;
+}
+
+@keyframes entry {
+  from {opacity:0;transform:translateY(30px);}
+  to {opacity:1;transform:translateY(0);}
+}
+
+.heart {
+  position:relative;
+  width:100px;
+  height:100px;
+  margin:0 auto 35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+  color:var(--pink);
+  filter:drop-shadow(0 0 20px #e69ab677);
+  animation:heartBeat 2s infinite;
+}
+
+@keyframes heartBeat {
+  0%,100% {transform:scale(1);}
+  50% {transform:scale(1.15);}
+}
+
+.intro-content h1 {
+  font-size:clamp(45px,10vw,75px);
+  color:var(--pink);
+  font-weight:900;
+  text-shadow:0 0 35px #e69ab655;
+  margin-bottom:30px;
+}
+
+.intro-line {
+  width:90px;
+  height:1px;
+  background:var(--gold);
+  margin:0 auto 30px;
+}
+
+.btn {
+  font-family:inherit;
+  border:1px solid var(--gold);
+  background:linear-gradient(120deg,var(--gold),#f0d7a5);
+  color:#21140e;
+  padding:12px 38px;
+  font-weight:800;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover {
+  transform:translateY(-4px);
+  box-shadow:0 10px 30px #d8b77c44;
+}
+
+/* القائمة */
+
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:10;
+  padding:17px 6%;
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  background:#09080bdc;
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #ffffff12;
+}
+
+nav a {
+  color:#c8b9c1;
+  text-decoration:none;
+  font-size:12px;
+  transition:.3s;
+}
+
+nav a:hover {color:var(--gold);}
+
+/* الواجهة الرئيسية */
+
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:110px 20px;
+  position:relative;
+  z-index:1;
+}
+
+.hero .date {
+  color:var(--gold);
+  letter-spacing:4px;
+  font-size:13px;
+}
+
+.hero h1 {
+  font-size:clamp(40px,10vw,90px);
+  color:var(--pink);
+  margin:25px 0;
+  font-weight:900;
+}
+
+.hero .line {
+  width:90px;
+  height:1px;
+  background:var(--gold);
+  margin:10px;
+}
+
+.hero p {
+  max-width:500px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2.5;
+}
+
+.scroll {
+  position:absolute;
+  bottom:35px;
+  color:var(--gold);
+  font-size:11px;
+  animation:down 2s infinite;
+}
+
+@keyframes down {
+  50% {transform:translateY(10px);}
+}
+
+/* الأقسام */
+
+section.content {
+  position:relative;
+  z-index:1;
+  padding:100px 7%;
+}
+
+.heading {
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.heading small {
+  color:var(--gold);
+  letter-spacing:4px;
+  font-size:10px;
+}
+
+.heading h2 {
+  color:var(--pink);
+  font-size:clamp(30px,6vw,50px);
+  margin:12px 0;
+}
+
+.heading p {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.panel {
+  max-width:850px;
+  margin:auto;
+  background:linear-gradient(145deg,#ffffff0c,#ffffff03);
+  border:1px solid #d8b77c33;
+  padding:40px;
+  border-radius:12px;
+  text-align:center;
+  transition:.4s;
+  box-shadow:0 15px 45px #00000030;
+}
+
+.panel:hover {
+  border-color:#d8b77c88;
+  transform:translateY(-5px);
+}
+
+.panel p {
+  color:#dfd1d8;
+  line-height:2.8;
+}
+
+/* الخط الزمني */
+
+.timeline {
+  max-width:650px;
+  margin:auto;
+  border-right:1px solid var(--gold);
+}
+
+.event {
+  position:relative;
+  padding:10px 30px 40px;
+  text-align:right;
+}
+
+.event::before {
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:18px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 15px var(--gold);
+}
+
+.event h3 {
+  color:var(--pink);
+  margin-bottom:8px;
+}
+
+.event p {
+  color:var(--muted);
+  line-height:2.2;
+  font-size:13px;
+}
+
+/* العداد */
+
+.counter {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.counter div {
+  min-width:90px;
+  padding:20px 12px;
+  text-align:center;
+  background:var(--surface);
+  border:1px solid #d8b77c44;
+  border-radius:9px;
+}
+
+.counter strong {
+  display:block;
+  font-size:27px;
+  color:var(--gold);
+}
+
+.counter small {color:var(--muted);}
+
+/* أعياد الميلاد */
+
+.birthdays {
+  max-width:850px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.birthday {
+  background:linear-gradient(145deg,#21141f,#120d15);
+  border:1px solid #d8b77c44;
+  border-radius:12px;
+  padding:35px 15px;
+  text-align:center;
+  transition:.4s;
+}
+
+.birthday:hover {
+  transform:translateY(-6px);
+  border-color:var(--pink);
+}
+
+.birthday .symbol {
+  color:var(--pink);
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.birthday h3 {
+  color:var(--pink);
+  font-size:22px;
+}
+
+.birthday .birthdate {
+  color:var(--gold);
+  margin:12px 0 20px;
+  font-size:13px;
+}
+
+.birthday strong {
+  display:block;
+  color:var(--gold);
+  font-size:32px;
+}
+
+.birthday small {color:var(--muted);}
+
+/* الرسالة */
+
+.secret {
+  display:none;
+  margin-top:25px;
+  animation:reveal .8s ease;
+}
+
+@keyframes reveal {
+  from {opacity:0;transform:translateY(20px);}
+  to {opacity:1;transform:translateY(0);}
+}
+
+/* ظهور الأقسام */
+
+.reveal {
+  opacity:0;
+  transform:translateY(35px);
+  transition:1s;
+}
+
+.reveal.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* مشغل الموسيقى */
+
+.music-bar {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  min-height:72px;
+  z-index:50;
+  background:#120d15f2;
+  backdrop-filter:blur(20px);
+  border-top:1px solid #d8b77c44;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding:10px 20px;
+  box-shadow:0 -8px 30px #00000055;
+}
+
+.music-icon {
+  width:43px;
+  height:43px;
+  border:1px solid #d8b77c77;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--pink);
+  font-size:20px;
+}
+
+.music-info {
+  display:flex;
+  flex-direction:column;
+  min-width:90px;
+}
+
+.music-info strong {
+  color:var(--white);
+  font-size:13px;
+}
+
+.music-info small {
+  color:var(--gold);
+  font-size:10px;
+}
+
+.music-bar audio {
+  width:min(300px,45vw);
+  height:35px;
+  accent-color:var(--pink);
+}
+
+footer {
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  border-top:1px solid #ffffff12;
+  font-size:12px;
+}
+
+@media(max-width:600px) {
+  nav {
+    gap:15px;
+    padding:15px 5px;
+  }
+
+  nav a {font-size:10px;}
+
+  section.content {padding:80px 6%;}
+
+  .panel {padding:25px 18px;}
+
+  .birthdays {grid-template-columns:1fr;}
+
+  .music-bar {gap:10px;padding:9px;}
+
+  .music-info strong {font-size:11px;}
+
+  .music-bar audio {width:42vw;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<!-- شاشة الدخول -->
+
+<div id="intro">
+  <div class="intro-content">
+    <div class="heart">♥</div>
+    <h1>روان</h1>
+    <div class="intro-line"></div>
+    <button class="btn" onclick="openSite()">دخول</button>
+  </div>
+</div>
+
+<!-- القائمة -->
+
+<nav>
+  <a href="#begin">البداية</a>
+  <a href="#story">الذكريات</a>
+  <a href="#counter">العداد</a>
+  <a href="#birthdays">أعياد الميلاد</a>
+  <a href="#message">الرسالة</a>
+</nav>
+
+<!-- الواجهة -->
+
+<section class="hero" id="begin">
+  <div class="date">11 — 06 — 2026</div>
+  <h1>قصدي رواني</h1>
+  <div class="line"></div>
+  <p></p>
+  <div class="scroll">SCROLL DOWN ↓</div>
+</section>
+
+<!-- البداية -->
+
+<section class="content reveal">
+  <div class="heading">
+    <small>01 / BEGINNING</small>
+    <h2>اعشقك</h2>
+    <p></p>
+  </div>
+
+  <div class="panel">
+<p> اممم اول مره تعرفت عليك فيها مكنتش متوقع ان احنا نوصل لكدا كنت اقول مجرد صداقه الكترونيه والموضوع عادي كلها شهر وما نتكلم تاني بس القدر تدخل وحبيتككك من قلبي اتمني والله انك تكون معي طول حياتي وتكوني زوجتي المستقبليه بإذن الله اعشقك💍🌺</p>
+  </div>
+</section>
+
+<!-- الذكريات -->
+
+<section class="content reveal" id="story">
+  <div class="heading">
+    <small>02 / MEMORIES</small>
+    <h2>الذكريات</h2>
+    <p></p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event">
+      <h3>8/27</h3>
+      <p>اول مره قلتلك فيها بحبك</p>
+    </div>
+
+    <div class="event">
+      <h3>8/17</h3>
+      <p>اول مره اتضاربنا فيها</p>
+    </div>
+
+    <div class="event">
+      <h3>8/19</h3>
+      <p>اول مره قلتي لي اكرهك 😔</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- العداد -->
+
+<section class="content reveal" id="counter">
+  <div class="heading">
+    <small>03 / TIME</small>
+    <h2>ايامنا</h2>
+    <p>شوفي كيف اياياي</p>
+  </div>
+
+  <div class="counter">
+    <div>
+      <strong id="days">0</strong>
+      <small>يوم</small>
+    </div>
+
+    <div>
+      <strong id="hours">0</strong>
+      <small>ساعة</small>
+    </div>
+
+    <div>
+      <strong id="minutes">0</strong>
+      <small>دقيقة</small>
+    </div>
+
+    <div>
+      <strong id="seconds">0</strong>
+      <small>ثانية</small>
+    </div>
+  </div>
+</section>
+
+<!-- أعياد الميلاد -->
+
+<section class="content reveal" id="birthdays">
+  <div class="heading">
+    <small>04 / BIRTHDAYS</small>
+    <h2>اعياد ميلادنااا</h2>
+    <p></p>
+  </div>
+
+  <div class="birthdays">
+
+    <div class="birthday">
+      <div class="symbol">♥</div>
+      <h3>عيد ميلادي</h3>
+      <div class="birthdate">11 / 11 / 2010</div>
+      <strong id="zyadDays">0</strong>
+      <small>لسه كتير علي عيد ميلادي القادم اخخخ</small>
+    </div>
+
+    <div class="birthday">
+      <div class="symbol">♥</div>
+      <h3>عيد ميلادك</h3>
+      <div class="birthdate">27 / 08 / 2010</div>
+      <strong id="rawanDays">0</strong>
+      <small>يا حظك يا خرا انت قبلي</small>
+    </div>
+
+  </div>
+</section>
+
+<!-- الرسالة -->
+
+<section class="content reveal" id="message">
+  <div class="heading">
+    <small>05 / PRIVATE</small>
+    <h2>رسالة</h2>
+    <p></p>
+  </div>
+
+  <div class="panel">
+    <p>رساله سريه جدن</p>
+
+    <br>
+
+    <button class="btn" onclick="revealMessage()">
+      افتح الرسالة
+    </button>
+
+    <div class="secret" id="secret">
+      <p>خديني معك اسبانيا🗿</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  11 / 06 / 2026
+  I LOVE YOU RAWAN
+</footer>
+
+<!-- شريط الموسيقى -->
+
+<div class="music-bar">
+  <div class="music-icon">♫</div>
+
+  <div class="music-info">
+    <strong>Love Story</strong>
+    <small>Music Player</small>
+  </div>
+
+  <audio controls loop>
+    <source src="love-story.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+
+// فتح الموقع
+
+function openSite() {
+  const intro = document.getElementById("intro");
+
+  intro.style.opacity = "0";
+  intro.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    intro.style.display = "none";
+  },1000);
+}
+
+// تاريخ أول تعارف
+
+const startDate = new Date("2026-06-11T00:00:00");
+
+function updateCounter() {
+  const now = new Date();
+  let diff = Math.max(0,now-startDate);
+
+  document.getElementById("days").textContent =
+    Math.floor(diff/86400000);
+
+  document.getElementById("hours").textContent =
+    Math.floor(diff/3600000)%24;
+
+  document.getElementById("minutes").textContent =
+    Math.floor(diff/60000)%60;
+
+  document.getElementById("seconds").textContent =
+    Math.floor(diff/1000)%60;
+}
+
+// أعياد الميلاد
+
+function nextBirthday(month,day) {
+  const now = new Date();
+  let year = now.getFullYear();
+
+  let birthday = new Date(year,month-1,day);
+  birthday.setHours(0,0,0,0);
+
+  const today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+
+  if(birthday < today) {
+    birthday = new Date(year+1,month-1,day);
+  }
+
+  return Math.ceil((birthday-now)/86400000);
+}
+
+function updateBirthdays() {
+  document.getElementById("zyadDays").textContent =
+    nextBirthday(11,11);
+
+  document.getElementById("rawanDays").textContent =
+    nextBirthday(8,27);
+}
+
+function updateAll() {
+  updateCounter();
+  updateBirthdays();
+}
+
+updateAll();
+setInterval(updateAll,1000);
+
+// إظهار الرسالة
+
+function revealMessage() {
+  const message = document.getElementById("secret");
+
+  message.style.display =
+    message.style.display === "block" ? "none" : "block";
+}
+
+// ظهور الأقسام
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:.15});
+
+document.querySelectorAll(".reveal").forEach(section => {
+  observer.observe(section);
+});
+
+// النجوم المتحركة
+
+const particles = document.getElementById("particles");
+
+for(let i=0;i<45;i++) {
+  const particle = document.createElement("div");
+
+  particle.className = "particle";
+  particle.style.left = Math.random()*100+"%";
+  particle.style.animationDuration =
+    (5+Math.random()*12)+"s";
+
+  particle.style.animationDelay =
+    Math.random()*10+"s";
+
+  particles.appendChild(particle);
+}
+
+</script>
+
+</body>
+</html>
